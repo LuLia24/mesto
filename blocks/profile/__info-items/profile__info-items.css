@@ -1,8 +1,6 @@
 .profile__info-items {
   display: flex;
   flex-direction: row;
-  /* align-items: baseline; */
-
   align-items: center;
   justify-content: center;
 }

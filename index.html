@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
-    <link rel="stylesheet" href="./devBlockOutline.css" />
+    <!-- <link rel="stylesheet" href="./devBlockOutline.css" /> -->
     <title>Место</title>
   </head>
   <body class="page">
@@ -39,8 +39,119 @@
             aria-label="Добавить"
           ></button>
         </section>
+        <!-- Elements -->
+        <section class="elements">
+          <ul class="elements__container">
+            <li class="element__items">
+              <img
+                src="./images/karachaevsk.jpg"
+                alt="полуразрущенная церковь."
+                class="element__photo"
+              />
+
+              <div class="element__caption">
+                <h2 class="element__caption-text">Карачаевск</h2>
+                <button
+                  class="element__button-like element__button-like_active"
+                  type="button"
+                ></button>
+              </div>
+            </li>
+            <li class="element__items">
+              <img
+                src="./images/Elbrus.jpg"
+                alt="гора на рассвете."
+                class="element__photo"
+              />
+
+              <div class="element__caption">
+                <h2 class="element__caption-text">Гора Эльбрус</h2>
+                <button class="element__button-like" type="button"></button>
+              </div>
+            </li>
+            <li class="element__items">
+              <img
+                src="./images/Donbay.jpg"
+                alt="гора с заснеженной вершиной."
+                class="element__photo"
+              />
+
+              <div class="element__caption">
+                <h2 class="element__caption-text">Домбай</h2>
+                <button class="element__button-like" type="button"></button>
+              </div>
+            </li>
+            <li class="element__items">
+              <img
+                src="./images/Elbrus.jpg"
+                alt="гора на рассвете."
+                class="element__photo"
+              />
+
+              <div class="element__caption">
+                <h2 class="element__caption-text">Гора Эльбрус</h2>
+                <button class="element__button-like" type="button"></button>
+              </div>
+            </li>
+            <li class="element__items">
+              <img
+                src="./images/Donbay.jpg"
+                alt="гора с заснеженной вершиной."
+                class="element__photo"
+              />
+
+              <div class="element__caption">
+                <h2 class="element__caption-text">Домбай</h2>
+                <button class="element__button-like" type="button"></button>
+              </div>
+            </li>
+            <li class="element__items">
+              <img
+                src="./images/karachaevsk.jpg"
+                alt="полуразрущенная церковь."
+                class="element__photo"
+              />
+
+              <div class="element__caption">
+                <h2 class="element__caption-text">Карачаево-Черкесия</h2>
+                <button class="element__button-like" type="button"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
       </main>
-      <footer class="footer"></footer>
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+      </footer>
     </div>
+    <!-- pop-up -->
+    <section class="popup">
+      <div class="popup__container">
+        <button class="popup__close-icon" type="button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+
+        <form action="#" class="popup__form" name="profile__editor">
+          <label class="popup__label-input">
+            <input
+              type="text"
+              class="popup__input"
+              name="profile__user-name"
+              value=""
+            />
+          </label>
+
+          <label class="popup__label-input">
+            <input
+              type="text"
+              class="popup__input"
+              name="profile__user-job"
+              value=""
+            />
+          </label>
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
