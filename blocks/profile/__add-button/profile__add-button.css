@@ -5,13 +5,11 @@
   background-position: center;
   background-repeat: no-repeat;
   border: 2px solid #ffffff;
-  box-sizing: content-box;
   border-radius: 2px;
   width: 282px;
   height: 50px;
   margin: 36px 0 0 0;
   padding: 0;
-
   box-sizing: border-box;
 }
 .profile__add-button:hover {
