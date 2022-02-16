@@ -12,4 +12,4 @@
 
 **GitHub Pages**
 
-- [Ссылка на GitHub Pages]
+- [Ссылка на GitHub Pages] (https://lulia24.github.io/mesto/)
