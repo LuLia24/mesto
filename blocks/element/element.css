@@ -1,7 +1,6 @@
 .element {
   display: flex;
   flex-direction: column;
-
   background-color: #ffffff;
   color: #000;
   border-radius: 10px;
