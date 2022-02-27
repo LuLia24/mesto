@@ -66,6 +66,7 @@ function submitAdd(evt) {
   evt.preventDefault();
   renderElement({ name: inputTitle.value, link: inputLink.value });
   closePopup(popupAdd);
+  popupFormAdd.reset();
 }
 
 function togleLike(evt) {
