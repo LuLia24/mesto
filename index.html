@@ -10,10 +10,7 @@
   <body class="page">
     <div class="page__container">
       <header class="header">
-        <img 
-          src="./images/logo.svg"
-          alt="логотип место."
-          class="header__logo" />
+        <img src="./images/logo.svg" alt="логотип место." class="header__logo" />
       </header>
 
       <main class="main">
@@ -23,101 +20,25 @@
           <div class="profile__info">
             <div class="profile__info-items">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button
-                class="profile__edit-button"
-                type="button" 
-                aria-label="Изменить имя"></button>
+              <button class="profile__edit-button" type="button" aria-label="Изменить имя"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button
-            class="profile__add-button"
-            type="button" 
-            aria-label="Добавить"></button>
+          <button class="profile__add-button" type="button" aria-label="Добавить"></button>
         </section>
         <!-- Elements -->
         <section class="elements">
           <ul class="elements__container">
-            <li class="element">
-              <img
-                src="./images/karachaevsk.jpg"
-                alt="полуразрущенная церковь."
-                class="element__photo"
-              />
-<!-- В соотвествии со стайл-гайдом практикума перносит следует только длинные строки 
-"Переносите длинные строки в HTML
-Хотя в языке HTML нет рекомендации, ограничивающей длину строк, длинные строки стоит разбивать — такой код станет проще читать.
-" -->
-              <div class="element__caption">
-                <h2 class="element__caption-text">Карачаевск</h2>
-                <button class="element__button-like" type="button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="./images/Elbrus.jpg" alt="гора на рассвете." class="element__photo" />
-
-              <div class="element__caption">
-                <h2 class="element__caption-text">Гора Эльбрус</h2>
-                <button
-                  class="element__button-like"
-                  type="button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/Donbay.jpg"
-                alt="гора с заснеженной вершиной."
-                class="element__photo"
-              />
-
-              <div class="element__caption">
-                <h2 class="element__caption-text">Домбай</h2>
-                <button
-                  class="element__button-like"
-                  type="button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/Elbrus.jpg"
-                alt="гора на рассвете."
-                class="element__photo" />
-
-              <div class="element__caption">
-                <h2 class="element__caption-text">Гора Эльбрус</h2>
-                <button
-                  class="element__button-like"
-                  type="button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/Donbay.jpg"
-                alt="гора с заснеженной вершиной."
-                class="element__photo"
-              />
-
-              <div class="element__caption">
-                <h2 class="element__caption-text">Домбай</h2>
-                <button 
-                  class="element__button-like" 
-                  type="button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/karachaevsk.jpg"
-                alt="полуразрущенная церковь."
-                class="element__photo"
-              />
-
-              <div class="element__caption">
-                <h2 class="element__caption-text">Карачаево-Черкесия</h2>
-                <button
-                  class="element__button-like"
-                  type="button"></button>
-              </div>
-            </li>
+            <template class="template__element">
+              <li class="element">
+                <img src="" alt="" class="element__photo" />
+                <button class="element__trash" type="button" aria-label="Удалить"></button>
+                <div class="element__caption">
+                  <h2 class="element__caption-text"></h2>
+                  <button class="element__button-like" type="button"></button>
+                </div>
+              </li>
+            </template>
           </ul>
         </section>
       </main>
@@ -126,12 +47,12 @@
       </footer>
     </div>
     <!-- pop-up -->
-    <div class="popup">
+    <div class="popup popup_name_editor">
       <div class="popup__container">
-        <button class="popup__close-icon" type="button"></button>
+        <button class="popup__close-icon popup__close-icon_name_editor" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <form action="#" class="popup__form" name="profile__editor">
+        <form action="#" class="popup__form popup__form_name_editor" name="profile__editor">
           <label class="popup__label-input">
             <input
               type="text"
@@ -153,11 +74,49 @@
               required
             />
           </label>
-          <button 
-            class="popup__submit"
-            type="submit">Сохранить</button>
+          <button class="popup__submit" type="submit">Сохранить</button>
         </form>
       </div>
+    </div>
+    <!-- pop-up-input elements -->
+    <div class="popup popup_name_add">
+      <div class="popup__container">
+        <button class="popup__close-icon popup__close-icon_name_add" type="button"></button>
+        <h2 class="popup__title">Новое место</h2>
+
+        <form action="#" class="popup__form popup__form_name_add" name="add-element">
+          <label class="popup__label-input">
+            <input
+              type="text"
+              class="popup__input popup__input_type_title"
+              name="add-title"
+              value=""
+              placeholder="Название"
+              required
+            />
+          </label>
+
+          <label class="popup__label-input">
+            <input
+              type="text"
+              class="popup__input popup__input_type_link"
+              name="add-link"
+              value=""
+              placeholder="Ссылка на картинку"
+              required
+            />
+          </label>
+          <button class="popup__submit" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <!-- pop-up resize img -->
+    <div class="popup popup_name_resize">
+      <figure class="popup__image-box">
+        <button class="popup__close-icon popup__close-icon_name_resize" type="button"></button>
+        <img src="" alt="" class="popup__image" />
+        <figcaption class="popup__image-text"></figcaption>
+      </figure>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
