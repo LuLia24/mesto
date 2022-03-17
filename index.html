@@ -52,61 +52,81 @@
         <button class="popup__close-icon popup__close-icon_name_editor" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <form action="#" class="popup__form popup__form_name_editor" name="profile__editor">
-          <label class="popup__label-input">
-            <input
-              type="text"
-              class="popup__input popup__input_type_name"
-              name="profile__user-name"
-              value=""
-              placeholder="Имя"
-              required
-            />
-          </label>
+        <form
+          action="#"
+          class="popup__form popup__form_name_editor"
+          name="profile__editor"
+          novalidate
+        >
+          <fieldset class="popup__set">
+            <label class="popup__label-input">
+              <input
+                type="text"
+                class="popup__input popup__input_type_name"
+                name="profile__user-name"
+                value=""
+                placeholder="Имя"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="popup__input-error profile__user-name-error"></span>
+            </label>
 
-          <label class="popup__label-input">
-            <input
-              type="text"
-              class="popup__input popup__input_type_job"
-              name="profile__user-job"
-              value=""
-              placeholder="Профессия"
-              required
-            />
-          </label>
-          <button class="popup__submit" type="submit">Сохранить</button>
+            <label class="popup__label-input">
+              <input
+                type="text"
+                class="popup__input popup__input_type_job"
+                name="profile__user-job"
+                value=""
+                placeholder="Профессия"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="popup__input-error profile__user-job-error"></span>
+            </label>
+            <button class="popup__submit" type="submit">Сохранить</button>
+          </fieldset>
         </form>
       </div>
     </div>
+
     <!-- pop-up-input elements -->
     <div class="popup popup_name_add">
       <div class="popup__container">
         <button class="popup__close-icon popup__close-icon_name_add" type="button"></button>
         <h2 class="popup__title">Новое место</h2>
 
-        <form action="#" class="popup__form popup__form_name_add" name="add-element">
-          <label class="popup__label-input">
-            <input
-              type="text"
-              class="popup__input popup__input_type_title"
-              name="add-title"
-              value=""
-              placeholder="Название"
-              required
-            />
-          </label>
+        <form action="#" class="popup__form popup__form_name_add" name="add-element" novalidate>
+          <fieldset class="popup__set">
+            <label class="popup__label-input">
+              <input
+                type="text"
+                class="popup__input popup__input_type_title"
+                name="add-title"
+                value=""
+                placeholder="Название"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="popup__input-error add-title-error"></span>
+            </label>
 
-          <label class="popup__label-input">
-            <input
-              type="text"
-              class="popup__input popup__input_type_link"
-              name="add-link"
-              value=""
-              placeholder="Ссылка на картинку"
-              required
-            />
-          </label>
-          <button class="popup__submit" type="submit">Создать</button>
+            <label class="popup__label-input">
+              <input
+                type="url"
+                class="popup__input popup__input_type_link"
+                name="add-link"
+                value=""
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span class="popup__input-error add-link-error"></span>
+            </label>
+            <button class="popup__submit" type="submit">Создать</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -119,5 +139,6 @@
       </figure>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

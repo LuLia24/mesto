@@ -49,10 +49,14 @@ const closeButtonResize = document.querySelector(".popup__close-icon_name_resize
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupByEsc);
+  popup.addEventListener("click", closePopupByOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupByEsc);
+  popup.removeEventListener("click", closePopupByOverlay);
 }
 
 function submitUser(evt) {
@@ -107,6 +111,18 @@ function renderElement(element) {
 function renderAllElement(initialCards) {
   initialCards.forEach(renderElement);
 }
+
+const closePopupByEsc = (evt) => {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector(".popup_opened"));
+  }
+};
+
+const closePopupByOverlay = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(document.querySelector(".popup_opened"));
+  }
+};
 
 editButton.addEventListener("click", () => {
   inputName.value = userName.textContent;
