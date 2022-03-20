@@ -20,6 +20,22 @@ const popupImgText = document.querySelector('.popup__image-text');
 const popupImgResize = document.querySelector('.popup_name_resize');
 const closeButtonResize = document.querySelector('.popup__close-icon_name_resize');
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, buttonElement, { inactiveButtonClass }) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
+  }
+};
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
@@ -107,6 +123,11 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
+  toggleButtonState(
+    Array.from(popupAdd.querySelectorAll('.popup__input')),
+    popupAdd.querySelector('.popup__submit'),
+    { inactiveButtonClass: 'popup__submit_inactive' }
+  );
   openPopup(popupAdd);
 });
 

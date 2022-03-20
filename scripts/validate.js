@@ -1,19 +1,3 @@
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
-const toggleButtonState = (inputList, buttonElement, { inactiveButtonClass }) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.disabled = true;
-  } else {
-    buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
-  }
-};
-
 const showInputError = (
   formElement,
   inputElement,
@@ -48,13 +32,6 @@ const setEventListeners = (formElement, { inputSelector, submitButtonSelector, .
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, rest);
-      toggleButtonState(inputList, buttonElement, rest);
-    });
-    editButton.addEventListener('click', () => {
-      toggleButtonState(inputList, buttonElement, rest);
-    });
-
-    addButton.addEventListener('click', () => {
       toggleButtonState(inputList, buttonElement, rest);
     });
   });
