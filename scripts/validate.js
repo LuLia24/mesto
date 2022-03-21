@@ -1,3 +1,28 @@
+const disableSubmitButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.disabled = true;
+};
+//  В случае если пользователь случайно закрывает корректно заполненую форму
+// (нажав Esc или клик по оверлею), то при следующем открытии формы пользователь
+// получит корректно заполненные поля и не активную кнопку сабмита и для ее активации
+// потребуются доп действия от пользователя(добавление или удаление символов).
+// Вероятно, при открытии попапа стоит использовать полную функцию toggleButtonState
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, buttonElement, { inactiveButtonClass }) => {
+  if (hasInvalidInput(inputList)) {
+    disableSubmitButton(buttonElement, inactiveButtonClass);
+  } else {
+    buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
+  }
+};
+
 const showInputError = (
   formElement,
   inputElement,
