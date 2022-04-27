@@ -1,3 +1,33 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+  },
+];
+
 const editButton = document.querySelector('.profile__edit-button');
 const popupEditor = document.querySelector('.popup_name_editor');
 const popupAdd = document.querySelector('.popup_name_add');
@@ -12,12 +42,10 @@ const inputTitle = document.querySelector('.popup__input_type_title');
 const inputLink = document.querySelector('.popup__input_type_link');
 const popupFormEditor = document.querySelector('.popup__form_name_editor');
 const popupFormAdd = document.querySelector('.popup__form_name_add');
-const templateElement = document.querySelector('#template__element').content;
+
 const elementsContainer = document.querySelector('.elements__container');
 
 const addButton = document.querySelector('.profile__add-button');
-const popupImg = document.querySelector('.popup__image');
-const popupImgText = document.querySelector('.popup__image-text');
 const popupImgResize = document.querySelector('.popup_name_resize');
 const closeButtonResize = document.querySelector('.popup__close-icon_name_resize');
 
@@ -47,35 +75,8 @@ function submitAdd(evt) {
   popupFormAdd.reset();
 }
 
-function togleLike(evt) {
-  evt.target.classList.toggle('element__button-like_active');
-}
-
-function deleteElement(evt) {
-  evt.target.closest('.element').remove();
-}
-
-function resizeImg(evt) {
-  popupImg.src = evt.target.src;
-  popupImg.alt = evt.target.alt;
-  popupImgText.textContent = evt.target.alt;
-  openPopup(popupImgResize);
-}
-
-function addListeners(userElement) {
-  userElement.querySelector('.element__button-like').addEventListener('click', togleLike);
-  userElement.querySelector('.element__trash').addEventListener('click', deleteElement);
-  userElement.querySelector('.element__photo').addEventListener('click', resizeImg);
-}
-
 function createElement(newElement) {
-  const userElement = templateElement.cloneNode(true);
-  const elementImage = userElement.querySelector('.element__photo');
-  elementImage.alt = newElement.name;
-  elementImage.src = newElement.link;
-  userElement.querySelector('.element__caption-text').textContent = newElement.name;
-  addListeners(userElement);
-  return userElement;
+  return new Card(newElement, '#template__element', openPopup, popupImgResize).createElement();
 }
 
 function renderElement(element, elementsContainer) {
@@ -108,7 +109,7 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
-  disableSubmitButton(popupAddButtonSubmit, options.inactiveButtonClass);
+  validationNameAdd.disableSubmitButton(popupAddButtonSubmit, options.inactiveButtonClass);
   openPopup(popupAdd);
 });
 
@@ -127,3 +128,27 @@ popupFormEditor.addEventListener('submit', submitUser);
 popupFormAdd.addEventListener('submit', submitAdd);
 
 renderAllElement(initialCards, elementsContainer);
+
+const options = {
+  formSelector: '.popup__form',
+  fieldSetSelector: '.popup__set',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
+};
+
+const formList = Array.from(document.querySelectorAll(options.formSelector));
+
+formList.forEach((formElement) => {
+  formElement.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+  });
+});
+
+const validationNameEditor = new FormValidator(options, popupFormEditor);
+validationNameEditor.enableValidation();
+
+const validationNameAdd = new FormValidator(options, popupFormAdd);
+validationNameAdd.enableValidation();
