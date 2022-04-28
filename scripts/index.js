@@ -31,7 +31,6 @@ const initialCards = [
 const editButton = document.querySelector('.profile__edit-button');
 const popupEditor = document.querySelector('.popup_name_editor');
 const popupAdd = document.querySelector('.popup_name_add');
-const popupAddButtonSubmit = popupAdd.querySelector('.popup__submit');
 const closeButtonEditor = document.querySelector('.popup__close-icon_name_editor');
 const closeButtonAdd = document.querySelector('.popup__close-icon_name_add');
 const userName = document.querySelector('.profile__title');
@@ -42,9 +41,7 @@ const inputTitle = document.querySelector('.popup__input_type_title');
 const inputLink = document.querySelector('.popup__input_type_link');
 const popupFormEditor = document.querySelector('.popup__form_name_editor');
 const popupFormAdd = document.querySelector('.popup__form_name_add');
-
 const elementsContainer = document.querySelector('.elements__container');
-
 const addButton = document.querySelector('.profile__add-button');
 const popupImgResize = document.querySelector('.popup_name_resize');
 const closeButtonResize = document.querySelector('.popup__close-icon_name_resize');
@@ -52,13 +49,13 @@ const closeButtonResize = document.querySelector('.popup__close-icon_name_resize
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
-  popup.addEventListener('click', closePopupByOverlay);
+  popup.addEventListener('mousedown', closePopupByOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByEsc);
-  popup.removeEventListener('click', closePopupByOverlay);
+  popup.removeEventListener('mousedown', closePopupByOverlay);
 }
 
 function submitUser(evt) {
@@ -97,19 +94,19 @@ const closePopupByEsc = (evt) => {
 
 const closePopupByOverlay = (evt) => {
   if (evt.target === evt.currentTarget) {
-    closePopup(document.querySelector('.popup_opened'));
+    closePopup(evt.currentTarget);
   }
 };
 
 editButton.addEventListener('click', () => {
   inputName.value = userName.textContent;
   inputJob.value = userJob.textContent;
-
+  validationNameEditor.resetValidation();
   openPopup(popupEditor);
 });
 
 addButton.addEventListener('click', () => {
-  validationNameAdd.disableSubmitButton(popupAddButtonSubmit, options.inactiveButtonClass);
+  validationNameAdd.resetValidation();
   openPopup(popupAdd);
 });
 
