@@ -1,12 +1,12 @@
 class Card {
-  constructor(card, templateElementSelector, openPopup, popupImgResize) {
+  constructor(card, templateElementSelector, handleCardClick) {
     this._name = card.name;
     this._link = card.link;
     this._templateElementSelector = templateElementSelector;
-    this._openPopup = openPopup;
-    this._popupImgResize = popupImgResize;
-    this._popupImg = this._popupImgResize.querySelector('.popup__image');
-    this._popupImgText = this._popupImgResize.querySelector('.popup__image-text');
+    this._handleCardClick = handleCardClick;
+    // this._popupImgResize = popupImgResize;
+    // this._popupImg = this._popupImgResize.querySelector('.popup__image');
+    // this._popupImgText = this._popupImgResize.querySelector('.popup__image-text');
   }
 
   _getTemplate() {
@@ -36,7 +36,9 @@ class Card {
       this._deleteElement();
     });
     this._elementImage.addEventListener('click', () => {
-      this._resizeImg();
+      // this._resizeImg();
+
+      this._handleCardClick(this._link, this._name);
     });
   }
 
@@ -48,12 +50,12 @@ class Card {
     this._cardElement.remove();
   }
 
-  _resizeImg() {
-    this._popupImg.src = this._link;
-    this._popupImg.alt = this._name;
-    this._popupImgText.textContent = this._name;
-    this._openPopup(this._popupImgResize);
-  }
+  // _resizeImg() {
+  //   this._popupImg.src = this._link;
+  //   this._popupImg.alt = this._name;
+  //   this._popupImgText.textContent = this._name;
+  //   this._openPopup(this._popupImgResize);
+  // }
 }
 
 export default Card;
