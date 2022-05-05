@@ -48,6 +48,7 @@ class Card {
 
   _deleteElement() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
   // _resizeImg() {

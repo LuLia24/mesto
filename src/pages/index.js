@@ -66,7 +66,7 @@ const popupAdd = new PopupWithForm(popupAddSelector, (item) => {
 });
 
 const popupEditor = new PopupWithForm(popupEditorSelector, (inputsValue) => {
-  userInfo.setUserInfo(inputsValue.name, inputsValue.link);
+  userInfo.setUserInfo(inputsValue.name, inputsValue.job);
 });
 
 editButton.addEventListener('click', () => {
