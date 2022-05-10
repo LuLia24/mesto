@@ -69,7 +69,6 @@ class Card {
 
   deleteElement() {
     this._cardElement.remove();
-    this._cardElement = null;
   }
 }
 

@@ -32,32 +32,38 @@ let userId = null;
 
 const userInfo = new UserInfo(userNameSelector, userJobSelector, userAvatarSelector);
 
-Promise.all([api.getUser(), api.getInitialCards()]).then(([userRes, cardRes]) => {
-  //user
-  userId = userRes._id;
-  userInfo.setUserInfo(userRes.name, userRes.about, userRes.avatar);
+Promise.all([api.getUser(), api.getInitialCards()])
+  .then(([userRes, cardRes]) => {
+    //user
+    userId = userRes._id;
+    userInfo.setUserInfo(userRes.name, userRes.about, userRes.avatar);
 
-  //cards
-  defaultCardList = new Section(
-    {
-      items: cardRes,
-      renderer: (item) => {
-        const card = createElement(item);
-        defaultCardList.addItem(card);
+    //cards
+    defaultCardList = new Section(
+      {
+        items: cardRes,
+        renderer: (item) => {
+          const card = createElement(item);
+          defaultCardList.addItem(card);
+        },
       },
-    },
-    elementsContainerSelector
-  );
-  defaultCardList.renderItems();
-});
+      elementsContainerSelector
+    );
+    defaultCardList.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
+popupWithImage.setEventListeners();
 
 function handleCardClick(img, text) {
   popupWithImage.open(img, text);
 }
 
 const popupDel = new PopupWithConfirmation(popupDelSelector);
+popupDel.setEventListeners();
 
 function createElement(newElement) {
   const card = new Card(
@@ -72,6 +78,9 @@ function createElement(newElement) {
           .deleteCard(cardId)
           .then((res) => {
             card.deleteElement();
+            popupDel.close();
+          })
+          .then(() => {
             popupDel.close();
           })
           .catch((err) => {
@@ -112,6 +121,9 @@ const popupAdd = new PopupWithForm(popupAddSelector, (item) => {
       const card = createElement(res);
       defaultCardList.addItem(card);
     })
+    .then(() => {
+      popupAdd.close();
+    })
     .catch((err) => {
       console.log(err);
     })
@@ -120,12 +132,17 @@ const popupAdd = new PopupWithForm(popupAddSelector, (item) => {
     });
 });
 
+popupAdd.setEventListeners();
+
 const popupEditor = new PopupWithForm(popupEditorSelector, (inputsValue) => {
   popupEditor.loading(true);
   api
     .setUser(inputsValue.name, inputsValue.job)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
+    })
+    .then(() => {
+      popupEditor.close();
     })
     .catch((err) => {
       console.log(err);
@@ -135,12 +152,17 @@ const popupEditor = new PopupWithForm(popupEditorSelector, (inputsValue) => {
     });
 });
 
+popupEditor.setEventListeners();
+
 const popupAvatar = new PopupWithForm(popupAvatarSelector, (inputsValue) => {
   popupAvatar.loading(true);
   api
     .setAvatar(inputsValue.link)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
+    })
+    .then(() => {
+      popupAvatar.close();
     })
     .catch((err) => {
       console.log(err);
@@ -149,8 +171,10 @@ const popupAvatar = new PopupWithForm(popupAvatarSelector, (inputsValue) => {
       popupAvatar.loading(false);
     });
 });
+popupAvatar.setEventListeners();
 
 avatarButton.addEventListener('click', () => {
+  validationNameAvatar.resetValidation();
   popupAvatar.open();
 });
 
