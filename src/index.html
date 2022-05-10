@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
     <title>Место</title>
   </head>
   <body class="page">
@@ -16,7 +15,9 @@
       <main class="main">
         <!-- Profile -->
         <section class="profile">
-          <img src="<%=require('./images/custo.jpg')%>" alt="аватар." class="profile__avatar" />
+          <div class="profile__avatar-container">
+            <img src="<%=require('./images/custo.jpg')%>" alt="аватар." class="profile__avatar" />
+          </div>
           <div class="profile__info">
             <div class="profile__info-items">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -119,6 +120,43 @@
         </form>
       </div>
     </div>
+
+    <!-- pop-up-avatar element -->
+    <div class="popup popup_name_avatar">
+      <div class="popup__container">
+        <button class="popup__close-icon popup__close-icon_name_avatar" type="button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+
+        <form action="#" class="popup__form popup__form_name_avatar" name="add-element" novalidate>
+          <fieldset class="popup__set">
+            <label class="popup__label-input">
+              <input
+                type="url"
+                class="popup__input popup__input_type_link"
+                name="link"
+                value=""
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span class="popup__input-error link-error"></span>
+            </label>
+            <button class="popup__submit" type="submit">Сохранить</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <!-- pop-up-delete elements -->
+    <div class="popup popup_name_del">
+      <div class="popup__container">
+        <button class="popup__close-icon popup__close-icon_name_del" type="button"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+
+        <form action="#" class="popup__form popup__form_name_del" name="del-element" novalidate>
+          <button class="popup__submit" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
     <!-- pop-up resize img -->
     <div class="popup popup_name_resize">
       <figure class="popup__image-box">
@@ -133,7 +171,10 @@
         <button class="element__trash" type="button" aria-label="Удалить"></button>
         <div class="element__caption">
           <h2 class="element__caption-text"></h2>
-          <button class="element__button-like" type="button"></button>
+          <div class="element__like-wrap">
+            <button class="element__button-like" type="button"></button>
+            <span class="element__like-counter"></span>
+          </div>
         </div>
       </li>
     </template>
