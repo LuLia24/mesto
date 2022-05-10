@@ -12,9 +12,12 @@
 .profile__edit-button{background-color:transparent;background-image:url(2f7be95ab48bbff7d88c.svg);background-position:50%;background-repeat:no-repeat;border:0;box-sizing:border-box;height:18px;padding:0;width:18px}.profile__edit-button:hover{cursor:pointer;opacity:.6;outline:none}@media screen and (min-width:1280px){.profile__edit-button{background-size:24px;height:24px;width:24px}}
 .profile__avatar{border-radius:50%;height:120px;width:120px}
 .profile__add-button{background-color:transparent;background-image:url(54b1426515811a15ebaf.svg);background-position:50%;background-repeat:no-repeat;border:2px solid #fff;border-radius:2px;box-sizing:border-box;height:50px;margin:36px 0 0;padding:0;width:282px}.profile__add-button:hover{cursor:pointer;opacity:.6;outline:none}@media screen and (min-width:1280px){.profile__add-button{background-size:22px;margin:0 0 0 auto;width:150px}}
+.profile__avatar-container{border-radius:50%;height:120px;position:relative;width:120px}.profile__avatar-container:after{background-color:rgba(0,0,0,.8);background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;bottom:0;content:"";cursor:pointer;left:0;position:absolute;right:0;top:0;visibility:hidden}.profile__avatar-container:hover:after{visibility:visible}
 .elements{padding:36px 19px 0}@media screen and (min-width:1280px){.elements{padding:50px 0 0}}
 .elements__container{display:grid;gap:20px 17px;grid-template-columns:repeat(auto-fill,282px);justify-content:center;list-style:none;margin:0;padding:0}
 .element{background-color:#fff;border-radius:10px;color:#000;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.element__like-wrap{align-items:center;display:flex;flex-direction:column}
+.element__like-counter{color:#000;font-family:Inter;font-size:13px;font-style:normal;font-weight:400;line-height:16px;margin-top:3px}
 .element__button-like{background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;background-size:cover;border:0;box-sizing:border-box;height:19px;margin:0;padding:0;width:22px}.element__button-like:hover{cursor:pointer;opacity:.5}
 .element__button-like_active{background-image:url(fe17a515669479b1e649.svg)}
 .element__trash{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);border:0;height:19px;padding:0;position:absolute;right:20px;top:20px;width:18px}.element__trash:hover{cursor:pointer;opacity:.6}
